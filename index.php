@@ -14,13 +14,23 @@ session_start();
 	}
 
 
-$password = $db->query("SELECT * FROM teams WHERE Number=7890"); 
-
-
 if(isset($_POST['submitconference'])) {
-    unset($_SESSION['conference']);
-    $_SESSION['conference'] = str_replace(' ', '',$_POST['teamNumber']);  
-     header('Location: competition.php');    
+    
+    $number = $_POST['teamNumber']; 
+    $sql = "SELECT Password FROM teams WHERE Number='$number' limit 1";
+    $result = $db->query($sql);
+    $value = mysqli_fetch_object($result);
+    $Password = $value->Password;
+    $submittedPassword = $_POST['teamPassword']; 
+    if ($submittedPassword == $Password) {  
+        unset($_SESSION['conference']);
+        $_SESSION['conference'] = str_replace(' ', '',$_POST['teamNumber']);  
+        header('Location: competition.php');
+        
+        }
+    else { 
+        echo "Incorrect PAssword"; 
+    }
 }
 $conference = $_SESSION['conference'];
 
@@ -79,20 +89,21 @@ $conference = $_SESSION['conference'];
                 <?php 
 					} 
 				?>
-                    <hr>
-                   
-        
-        <h2>See details of the conference</h2>
-        <form action = "" method = "post"> 
-        
-        <input name="teamNumber" id="teamNumber"></input>
-        <input name="teamPassword" id="teamPassword"></input>
-    
-		<input type="submit" name="submitconference" value="Get Selected Values" />
+                        <hr>
 
-		</form>
+    <h2>See details of the conference</h2>
+    <form action="" method="post">
+        <div class="field">
+            <label for "teamNumber">Team Number</label>
+            <input name="teamNumber" id="teamNumber"></input>
         </div>
-            </div>
+        <div class="field">
+            <label for "teamPassword">Password</label>
+            <input name="teamPassword" id="teamPassword"></input>
+        </div>
+        <input type="submit" name="submitconference" value="Get Selected Values" /> </form>
+    </div>
+    </div>
+    </body>
 
-        </body> 
     </html>
