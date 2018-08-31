@@ -14,16 +14,8 @@ session_start();
 	}
 
 
- 	$query = "SELECT Number FROM `teams`";
+$password = $db->query("SELECT * FROM teams WHERE Number=7890"); 
 
- 	$result2 = mysqli_query($db, $query);
-
-$options = "";
-
-while($row2 = mysqli_fetch_array($result2))
-{
-    $options = $options."<option>$row2[0]</option>";
-}
 
 if(isset($_POST['submitconference'])) {
     unset($_SESSION['conference']);
