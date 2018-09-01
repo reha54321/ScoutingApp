@@ -33,8 +33,10 @@
 				$Host = trim($_POST['Host']); 
 				$nospacesname  = str_replace(' ', '', $Name);
 
-				$individualmatchestable = $selected_val . $nospacesname . "matches"; 				
-				$insert = $db->prepare("INSERT INTO ".$competitiontable." (name, host) VALUES (?,?)");
+				$individualmatchestable = $selected_val . $nospacesname . "matches"; 
+                $teaminfotable = $selected_value . $nospacesname . "teaminfo"; 
+                echo $teaminfotable; 
+                $insert = $db->prepare("INSERT INTO ".$competitiontable." (name, host) VALUES (?,?)");
 				$insert->bind_param('ss', $Name, $Host);
                     //Change this for matches
 				$sql = "CREATE TABLE ".$individualmatchestable." (
@@ -48,16 +50,28 @@
                 TeleOpRedPoints INT(6),
                 TeleOpBluePoints INT(6)
 				)";
+                $sql2 = "CREATE TABLE ".$teaminfotable." (
+				id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
+				Name TEXT,
+				Number TEXT,
+				Info TEXT
+				)";
 				if ($db->query($sql) === TRUE) {
-				    echo "Table MyGuests created successfully";
+				    echo "Matches created successfully";
+				} else {
+				    echo "Error creating table: " . $db->error;
+				}
+				if ($db->query($sql2) === TRUE) {
+				    echo "Team Infos created successfully";
 				} else {
 				    echo "Error creating table: " . $db->error;
 				}
 				
 				
 					if($insert->execute()) {
+                echo $individualteamsinfotable; 
 
-						header('Location:competition.php'); 
+					//	header('Location:competition.php'); 
 						die(); 
 					}
 			

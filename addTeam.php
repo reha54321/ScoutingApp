@@ -40,7 +40,7 @@ $records = array();
     <html>
 
     <head>
-        <title> </title>
+        <title>Add A Team!</title>
         <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!--Import materialize.css-->
         <link type="text/css" rel="stylesheet" href="css/materialize.css" media="screen,projection" />
@@ -50,8 +50,19 @@ $records = array();
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script type="text/javascript" src="js/materialize.min.js"></script>
         
-         <h3>Enter a new teams to be shared with everybody! </h3>
-                    <hr>
+        <nav>
+    <div class="nav-wrapper blue lighten-2">
+      <a href="index.php" class="brand-logo center">FTC Scouting App</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="index.php">Other Teams</a></li>
+
+      </ul>
+    </div>
+  </nav>
+        <div class ="container"> 
+            <div class ="card-panel">
+         <h3>Enter you team's details </h3>
+                <p>A password will be needed to enter your team's dashboard, please share it with your teammates</p>
                     <form action="" method="post">
                         <div class="field">
                             <label for "Name">Team Name</label>
@@ -65,10 +76,10 @@ $records = array();
                             <input type="text" name="Number" id="Number" autocomplete="off"> </div>
                         <div class="field">
                             <label for "Password">Team Password</label>
-                            <input name="Password" id="Password"></input>
+                            <input type="password" name="Password" id="Password" class="validate"></input>
                         </div>
-                            <input type="submit" class="blue lighten-2 btn waves-effect waves-light" value="Insert"> </div>
+                            <input type="submit" class="blue lighten-2 btn waves-effect waves-light" value="Add Your Team"> </div>
                     </form>
-        
-        <hr> 
+        </div> 
+        </div>
         </body>

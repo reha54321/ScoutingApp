@@ -7,13 +7,14 @@
 	 	} 
 		$records = array();
 
-	 	
+	 	$teamrecords = array(); 
     
 		
 
 		$matchtable = strtolower(str_replace(' ', '',$_SESSION['conference']) . str_replace(' ', '',$_SESSION['delegation']) . "matches");
-        echo $matchtable;
-		if($results = $db->query("SELECT * FROM ".$matchtable."")) {
+        $teaminfotable = strtolower(str_replace(' ', '',$_SESSION['conference']) . str_replace(' ', '',$_SESSION['delegation']) . "teaminfo");
+
+        if($results = $db->query("SELECT * FROM ".$matchtable."")) {
 			if($results->num_rows) {
 				while($row = $results->fetch_object()) { 
 					$records[] = $row; 
@@ -22,6 +23,26 @@
 			}
 		}
 
+          if($results3 = $db->query("SELECT * FROM ".$teaminfotable."")) {
+			if($results3->num_rows) {
+				while($row2 = $results3->fetch_object()) { 
+					$teamrecords[] = $row2; 
+				}
+				$results3->free(); 
+			}
+		}
+           $query = "SELECT id FROM ".$matchtable."";
+
+            $result2 = mysqli_query($db, $query);
+
+        $options = "";
+
+        while($row2 = mysqli_fetch_array($result2))
+        {
+            $options = $options."<option>$row2[0]</option>";
+        }
+
+       
 		
 	?> 
 	<!DOCTYPE html>
@@ -38,6 +59,43 @@
         <script type="text/javascript" src="js/materialize.min.js"></script>
       
 		
+			<h3>Delegates</h3>
+					<?php
+						if(!count($teamrecords)) {
+
+							echo 'no delegates found'; 
+							} else {  
+					?>
+					<table> 
+						<thead><tr> 
+							<th>Team Name</th>
+							<th>Team Number</th>
+							<th>Team Info</th>
+						
+							</tr>
+							</thead>
+						<tbody>
+						<?php
+							foreach($teamrecords as $r){
+							?>
+							<tr>
+								<td><?php echo $r->Name; ?></td>
+								<td><?php echo $r->Number; ?></td>
+								<td><?php echo $r->Info; ?></td>
+							
+
+							</tr>
+							<?php
+						}
+							?>
+						</tbody>	
+					</table>
+					<?php 
+								} 
+							?>
+
+					<hr> 
+       
 			<h3>Delegates</h3>
 					<?php
 						if(!count($records)) {
@@ -82,10 +140,5 @@
 					<?php 
 								} 
 							?>
-
-					<hr> 
-
-
-
 	</body>
 	</html>

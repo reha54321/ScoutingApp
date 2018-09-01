@@ -1,5 +1,5 @@
 <?php
-	//error_reporting(0);
+	error_reporting(0);
 session_start(); 
 	require 'db/connect.php';
 
@@ -39,7 +39,7 @@ $conference = $_SESSION['conference'];
     <html>
 
     <head>
-        <title> </title>
+        <title>FTC Scouting App</title>
         <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!--Import materialize.css-->
         <link type="text/css" rel="stylesheet" href="css/materialize.css" media="screen,projection" />
@@ -49,18 +49,30 @@ $conference = $_SESSION['conference'];
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script type="text/javascript" src="js/materialize.min.js"></script>
       
-     <div class = "container">  <h1>Teams</h1>
+  <nav>
+    <div class="nav-wrapper blue lighten-2">
+      <a href="index.php" class="brand-logo center">FTC Scouting App</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="addTeam.php">Add A Team</a></li>
+
+      </ul>
+    </div>
+  </nav>
+             
+     <div class = "container">    <div class="card-panel" style="padding:20px"> <h1>Teams</h1>
             <?php
 			if(!count($records)) {
 
-				echo 'no conferences found'; 
+				echo 'no teams found'; 
 				} else {  
 		?>
-                <table>
+         
+      
+                <table style = "" class="responsive-table striped">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Number</th>
+                            <th>Team Name</th>
+                            <th>Team Number</th>
                             <th>School</th>
                             
                         </tr>
@@ -89,9 +101,12 @@ $conference = $_SESSION['conference'];
                 <?php 
 					} 
 				?>
-                        <hr>
+         </div> 
 
-    <h2>See details of the conference</h2>
+<div class="card-panel">
+    <h2>Team Dashboard</h2>
+         
+    <p>Enter your team number and the team password. If you don't see your team, create it!</p>
     <form action="" method="post">
         <div class="field">
             <label for "teamNumber">Team Number</label>
@@ -101,9 +116,10 @@ $conference = $_SESSION['conference'];
             <label for "teamPassword">Password</label>
             <input name="teamPassword" id="teamPassword"></input>
         </div>
-        <input type="submit" name="submitconference" value="Get Selected Values" /> </form>
+        <input type="submit" class="blue lighten-2 btn waves-effect waves-light" name="submitconference" value="Submit" /> </form>
     </div>
     </div>
+</div> 
     </body>
 
     </html>
