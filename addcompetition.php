@@ -34,7 +34,7 @@
 				$nospacesname  = str_replace(' ', '', $Name);
 
 				$individualmatchestable = $selected_val . $nospacesname . "matches"; 
-                $teaminfotable = $selected_value . $nospacesname . "teaminfo"; 
+                $teaminfotable = $selected_val . $nospacesname . "teaminfo"; 
                 echo $teaminfotable; 
                 $insert = $db->prepare("INSERT INTO ".$competitiontable." (name, host) VALUES (?,?)");
 				$insert->bind_param('ss', $Name, $Host);
@@ -71,7 +71,7 @@
 					if($insert->execute()) {
                 echo $individualteamsinfotable; 
 
-					//	header('Location:competition.php'); 
+					header('Location:competition.php'); 
 						die(); 
 					}
 			
