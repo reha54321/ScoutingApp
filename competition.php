@@ -59,24 +59,26 @@ if($results = $db->query("SELECT * FROM ".$competitiontable."")) {
         <script type="text/javascript" src="js/materialize.min.js"></script>
         <nav>
             <div class="blue lighten-2 nav-wrapper">
-                <a href="delegates.php" class="brand-logo">
+                <a href="delegates.php" class="center brand-logo">
                     <?php echo $selected_val; ?>
                 </a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="addcompetition.php">Add a new delegation</a></li>
-                    <li><a href="index.php">Other conferences</a></li>
+                    <li><a href="addcompetition.php">Add a new competition</a></li>
+                    <li><a href="index.php">Other teams</a></li>
                 </ul>
             </div>
         </nav>
         <div class="container">
-            <h3>Delegations</h3>
+            <div class ="card-panel">
+            <h3>Competitions</h3>
+            <p>Add your competitions that your team is participating in!</p>
             <?php
 					if(!count($records)) {
 
-						echo 'no delegations found'; 
+						echo 'no competitions found'; 
 						} else {  
 				?>
-                <table>
+                <table class="responsive-table striped">
                     <thead>
                         <tr>
                             <th>Name</th>
@@ -105,15 +107,16 @@ if($results = $db->query("SELECT * FROM ".$competitiontable."")) {
                 <?php 
 							} 
 						?>
-                    <hr>
-                    <h4>Delegates</h4>
-                    <h6>Select the delegation below in order to see the delegates for the delegation</h6>
+                </div>
+                 <div class = "card-panel">
+                    <h4>Competitions</h4>
+                    <h6>Select a competition to view the matches and team info saved for each competition</h6>
                     <form action="" method="post">
                         <select name="delegation" class="browser-default">
                             <?php echo $options;?>
                         </select>
-                        <input type="submit" name="submit" class="blue lighten-2 btn waves-effect waves-light" value="See delegates for this delegation" /> </form>
-                    <hr> </div>
+                        <input type="submit" name="submit" class="blue lighten-2 btn waves-effect waves-light" value="Competition Dashboard" /> </form>
+                    </div></div>
     </body>
 
     </html>

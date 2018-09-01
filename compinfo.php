@@ -9,7 +9,8 @@
 
 	 	$teamrecords = array(); 
     
-		
+		    $selected_val = $_SESSION['conference'];  // Storing Selected Value In Variable
+
 
 		$matchtable = strtolower(str_replace(' ', '',$_SESSION['conference']) . str_replace(' ', '',$_SESSION['delegation']) . "matches");
         $teaminfotable = strtolower(str_replace(' ', '',$_SESSION['conference']) . str_replace(' ', '',$_SESSION['delegation']) . "teaminfo");
@@ -57,13 +58,26 @@
     <body class="grey lighten-4">
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script type="text/javascript" src="js/materialize.min.js"></script>
-      
-		
-			<h3>Delegates</h3>
+        <nav>
+            <div class="blue lighten-2 nav-wrapper">
+                <a href="delegates.php" class="center brand-logo">
+                    <?php echo $selected_val; ?>
+                </a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="addmatch.php">Add a new match</a></li>
+                    <li><a href="addTeamInfo.php">Add a new team</a></li>
+                    <li><a href="competition.php">Team Dashboard</a></li>
+                    <li><a href="index.php">Other teams</a></li>
+                </ul>
+            </div>
+        </nav>
+		<div class = "container">
+            <div class= "card-panel">
+			<h3>Scouted Teams</h3>
 					<?php
 						if(!count($teamrecords)) {
 
-							echo 'no delegates found'; 
+							echo 'no teams added so far'; 
 							} else {  
 					?>
 					<table> 
@@ -94,9 +108,9 @@
 								} 
 							?>
 
-					<hr> 
-       
-			<h3>Delegates</h3>
+                </div>   
+            <div class ="card-panel">
+			<h3>Matches</h3>
 					<?php
 						if(!count($records)) {
 
@@ -122,14 +136,14 @@
 							?>
 							<tr>
 								<td><?php echo $r->id; ?></td>
-								<td><?php echo $r->RedTeam1; ?></td>
-								<td><?php echo $r->RedTeam2; ?></td>
-								<td><?php echo $r->BlueTeam1; ?></td>
-								<td><?php echo $r->BlueTeam2; ?></td>
-								<td><?php echo $r->AutoRedPoints; ?></td>
-								<td><?php echo $r->AutoBluePoints; ?></td>
-								<td><?php echo $r->TeleOpRedPoints; ?></td>
-								<td><?php echo $r->TeleOpBluePoints; ?></td>
+								<td class = "red-text"><?php echo $r->RedTeam1; ?></td>
+								<td class = "red-text"><?php echo $r->RedTeam2; ?></td>
+								<td class = "blue-text"><?php echo $r->BlueTeam1; ?></td>
+								<td class = "blue-text"><?php echo $r->BlueTeam2; ?></td>
+								<td class = "red-text"><?php echo $r->AutoRedPoints; ?></td>
+								<td class = "blue-text"><?php echo $r->AutoBluePoints; ?></td>
+								<td class = "red-text"><?php echo $r->TeleOpRedPoints; ?></td>
+								<td class = "blue-text"><?php echo $r->TeleOpBluePoints; ?></td>
 
 							</tr>
 							<?php
@@ -140,5 +154,7 @@
 					<?php 
 								} 
 							?>
+            </div>
+            </div>
 	</body>
 	</html>

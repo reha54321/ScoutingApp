@@ -16,7 +16,6 @@
     $selected_val = str_replace(' ', '', $selected_val);
 	$matchtable = $selected_val . $nospacesdelegation . "matches";
     $matchtable = strtolower($matchtable);
-    echo $matchtable;
 	if(!empty($_POST)) {
 				if(isset($_POST['RedTeam1'],$_POST['RedTeam2'],$_POST['BlueTeam1'],$_POST['BlueTeam2'],$_POST['AutoRedPoints'],$_POST['AutoBluePoints'],$_POST['TeleOpRedPoints'],$_POST['TeleOpBluePoints'])) {
 
@@ -52,21 +51,24 @@
         <link type="text/css" rel="stylesheet" href="css/materialize.css" media="screen,projection" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" /> </head>
 
-    <body>
-         <nav>
+    <body class="grey lighten-4">
+          <nav>
             <div class="blue lighten-2 nav-wrapper">
-                <a href="delegates.php" class="brand-logo">
-                    <?php echo $_SESSION['conference']; ?>
+                <a href="delegates.php" class="center brand-logo">
+                    <?php echo $selected_val; ?>
                 </a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="delegates.php">Go back to the conference page</a></li>
-                    <li><a href="index.php">Other conferences</a></li>
-                    <li><a href="delegate.php">See the other delegates in this delegation</a></li>
+                    <li><a href="addmatch.php">Add a new match</a></li>
+                    <li><a href="addTeamInfo.php">Add a new team</a></li>
+                    <li><a href="competition.php">Team Dashboard</a></li>
+                    <li><a href="index.php">Other teams</a></li>
                 </ul>
             </div>
         </nav>
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script type="text/javascript" src="js/materialize.min.js"></script>
+        <div class = "container">
+             <div class = "card-panel">
         <form action="" method="post">
             <div class="field">
                 <label for "Name">Team Red 1 Name</label>
@@ -93,7 +95,9 @@
                 <label for "Name">TeleOp Blue Points</label>
                 <input type="text" name="TeleOpBluePoints" id="TeleOpBluePoints" autocomplete="off"> </div>
             
-            <input type="submit" name="submit" value="Insert"> </form>
+            <input type="submit" class="blue lighten-2 btn waves-effect waves-light" name="submit" value="Add Your Match"> </form>
+                 </div>
+            </div>
     </body>
 
     </html>
