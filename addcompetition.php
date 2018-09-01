@@ -54,7 +54,8 @@
 				id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
 				Name TEXT,
 				Number TEXT,
-				Info TEXT
+				Info TEXT, 
+				Mechanism1 TEXT
 				)";
 				if ($db->query($sql) === TRUE) {
 				    echo "Matches created successfully";
@@ -92,19 +93,22 @@
     <body class="grey lighten-4">
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script type="text/javascript" src="js/materialize.min.js"></script>
-          <nav>
+            <nav>
             <div class="blue lighten-2 nav-wrapper">
-                <a href="delegates.php" class="brand-logo">
-                    <?php echo $_SESSION['conference']; ?>
+                <a href="competition.php" class="center brand-logo">
+                    <?php echo $_SESSION['conference'] ?>
                 </a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="delegates.php"> <?php echo 'Go back to the ' .$_SESSION['conference']. 'page'; ?></a></li>
-                    <li><a href="index.php">Other conferences</a></li>
-                   
+                    <li><a href="competition.php">Team Dashboard</a></li>
+                    <li><a href="index.php">Other teams</a></li>
+                </ul>
             </div>
         </nav>
           <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script type="text/javascript" src="js/materialize.min.js"></script>
+        <div class = "container">
+        <div class = "card-panel">
+        	
         <form action="" method="post">
           
             <div class="field">
@@ -114,8 +118,6 @@
                 <label for "Host">Host</label>
                 <input type="text" name="Host" id="Host" autocomplete="off"> </div>
           
-            <input type="submit" name="submit" value="Insert"> </form> <a href="competition.php">Want to see the other delegations!</a>
-        <br> <a href="index.php">Want to see conference details!</a>
-        <br> <a href="delegate.php">Want to see the individual delegates!</a> </body>
-
+            <input type="submit" class="blue lighten-2 btn waves-effect waves-light" name="submit" value="Insert"> </form> 
+</div> </div>
     </html>

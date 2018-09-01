@@ -59,7 +59,7 @@ if($results = $db->query("SELECT * FROM ".$competitiontable."")) {
         <script type="text/javascript" src="js/materialize.min.js"></script>
         <nav>
             <div class="blue lighten-2 nav-wrapper">
-                <a href="delegates.php" class="center brand-logo">
+                <a href="competition.php" class="center brand-logo">
                     <?php echo $selected_val; ?>
                 </a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">

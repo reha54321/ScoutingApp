@@ -60,7 +60,7 @@
         <script type="text/javascript" src="js/materialize.min.js"></script>
         <nav>
             <div class="blue lighten-2 nav-wrapper">
-                <a href="delegates.php" class="center brand-logo">
+                <a href="competition.php" class="center brand-logo">
                     <?php echo $selected_val; ?>
                 </a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -85,7 +85,8 @@
 							<th>Team Name</th>
 							<th>Team Number</th>
 							<th>Team Info</th>
-						
+							<th>Mechanism 1</th>
+
 							</tr>
 							</thead>
 						<tbody>
@@ -96,7 +97,8 @@
 								<td><?php echo $r->Name; ?></td>
 								<td><?php echo $r->Number; ?></td>
 								<td><?php echo $r->Info; ?></td>
-							
+							    <td><?php if( $r->Mechanism1 == "Yes"){echo "<i class='material-icons'>check</i>";}else {echo "<i class='material-icons'>close</i>";} ?></td>
+
 
 							</tr>
 							<?php
@@ -128,11 +130,16 @@
 							<th>Auto Blue Points</th>
 							<th>TeleOp Red Points</th>
 							<th>TeleOp Blue Points</th>
+							<th>Total Red Points</th>
+							<th>Total Blue Points</th>		
+							<th>Winner</th>					
 							</tr>
 							</thead>
 						<tbody>
 						<?php
 							foreach($records as $r){
+								$bluepoints = intval($r->TeleOpBluePoints)+intval($r->AutoBluePoints); 
+								$redpoints = intval($r->TeleOpBluePoints)+intval($r->AutoBluePoints);								
 							?>
 							<tr>
 								<td><?php echo $r->id; ?></td>
@@ -144,7 +151,10 @@
 								<td class = "blue-text"><?php echo $r->AutoBluePoints; ?></td>
 								<td class = "red-text"><?php echo $r->TeleOpRedPoints; ?></td>
 								<td class = "blue-text"><?php echo $r->TeleOpBluePoints; ?></td>
-
+								<td class = "red-text"><?php echo intval($r->TeleOpRedPoints)+intval($r->AutoRedPoints); ?></td>
+								<td class = "blue-text"><?php echo intval($r->TeleOpBluePoints)+intval($r->AutoBluePoints); ?></td>	
+								<td class = ""><?php if(intval($r->TeleOpBluePoints)+intval($r->AutoBluePoints)>intval($r->TeleOpRedPoints)+intval($r->AutoRedPoints)){echo "Blue Won";}else if(intval($r->TeleOpRedPoints)+intval($r->AutoRedPoints)>intval($r->TeleOpBluePoints)+intval($r->AutoBluePoints)) {echo "Red Won";} ?></td>	
+								
 							</tr>
 							<?php
 						}
